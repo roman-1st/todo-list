@@ -6,10 +6,7 @@ import {useDispatch} from "react-redux";
 import {changeTheme} from "@/src/redux/features/todo-slice";
 
 const ChangeTheme = () => {
-
-    // const { theme } = useTypedSelector( (state) => state.todoReducer.value)
     const dispatch = useDispatch()
-
     const [isTheme, setIsTheme] = useState(siteTheme)
 
     const handleThemeChange = (id: number) => {
@@ -25,7 +22,7 @@ const ChangeTheme = () => {
         }
     };
 
-    console.log(siteTheme)
+    // решил попробовать изменение логики не через isLight в redux с boolean значением, а через массив. Не знаю почему, может быть успею переделать.
 
     return (
         <S.ChangeThemeContainer>
