@@ -16,22 +16,14 @@ const AddTodo = () => {
     }
 
     const addTodoToState = () => {
-        // формирование новой TODO
-        const newTodo = {
-            id: 0,
-            title: '',
-            completed: false,
-        }
-        // проверка на присвоение айди
-        if(todos.length > 0) {
-            newTodo.id = todos.at(-1).id + 1
-            newTodo.title = todoText
-        } else {
-            newTodo.id = 1
-            newTodo.title = todoText
-        }
+        const lastTodo = todos[todos.length - 1];
+        const newTodoId = lastTodo ? lastTodo.id + 1 : 1;
 
-        dispatch(addTodo(newTodo))
+        dispatch(addTodo({
+            id: newTodoId,
+            title: todoText,
+            completed: false
+        }))
 
         //отчистка поля и закрытие модального окна
         setModal(false)
