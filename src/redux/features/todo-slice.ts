@@ -1,20 +1,8 @@
 
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {element} from "prop-types";
-import {log} from "util";
 import {DARK, LIGHT} from "@/src/data/constans/theme";
 import {ALL_TODOS} from "@/src/data/constans/filter";
-
-export type TodoState = {
-    todos: any[],
-    filterTodos: string,
-    isLoading: boolean,
-    theme: string,
-}
-
-export type InitialStateType = {
-    value: TodoState,
-}
+import {InitialStateType, TodoState} from "@/src/types/todo";
 
 export const initialState = {
     value: {
@@ -66,13 +54,6 @@ export const todo = createSlice({
         },
         changeTheme: (state, action) => {
             state.value.theme = action.payload
-            // return {
-            //     value: {
-            //         ...state.value,
-            //         theme: action.payload,
-            //     }
-            // }
-
         }
     }
 })

@@ -4,6 +4,7 @@ import Layout from "@/src/components/Layout/Layout";
 import dynamic from "next/dynamic";
 import axios from "axios";
 import {fetchTodo} from "@/src/redux/features/todo-slice";
+import {Todo} from "@/src/types/todo";
 
 const Todos = ({todos}: any) => {
     console.log(todos)
