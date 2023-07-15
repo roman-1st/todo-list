@@ -8,27 +8,16 @@ import {useTypedSelector} from "@/src/hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {fetchTodo} from "@/src/redux/features/todo-slice";
 import {ACTIVE_TODOS, ALL_TODOS, COMPLETED_TODOS} from "@/src/data/constans/filter";
+import {DARK, LIGHT} from "@/src/data/constans/theme";
 
-const TodoPage = () => {
-    const [todos, setTodos] = useState([])
+const TodoPage = ({data}:any) => {
     const state = useTypedSelector( (state) => state.todoReducer.value)
+    console.log(state.theme)
     const dispatch = useDispatch()
     useEffect( () => {
-        const fetchTodos = async () => {
-            try {
-                const response = await axios.get('https://jsonplaceholder.typicode.com/todos/?limit=20')
-                dispatch(fetchTodo(response.data.slice(0,10)))
-            } catch (e: any) {
-                console.log(e.message)
-            }
-
-        }
-        fetchTodos()
-
+        dispatch(fetchTodo([...data]))
     }, [])
 
-    // if (state.isLoading) return <p> Loading </p>
-    console.log(state.todos)
     const displayTodos = () => {
         switch (state.filterTodos) {
             case ALL_TODOS:
@@ -61,7 +50,7 @@ const TodoPage = () => {
     }
 
     return (
-        <S.TodoPageContainer>
+        <S.TodoPageContainer theme={state.theme == "LIGHT" ? LIGHT : DARK}>
             <S.TodoPageHeader>
                 <S.TodoPageTitle> Список задач </S.TodoPageTitle>
                 <FilterContainer />

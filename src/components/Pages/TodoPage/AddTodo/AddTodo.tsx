@@ -9,8 +9,7 @@ const AddTodo = () => {
     const dispatch = useDispatch()
     const [todoText, setTodoText ] = useState<string>("")
 
-    const todos = useTypedSelector( (state) => state.todoReducer.value.todos)
-    // console.log(todos.at(-1).id)
+    const {todos, theme} = useTypedSelector( (state) => state.todoReducer.value)
     const changeText = (e: any) => {
         setTodoText(e.target.value)
     }
@@ -24,11 +23,6 @@ const AddTodo = () => {
         if(todos.length > 0) {
             newTodo.id = todos.at(-1).id + 1
             newTodo.title = todoText
-            // const newTodo = {
-            //     id: todos.at(-1).id + 1,
-            //     title: todoText,
-            //     completed: false,
-            // }
         } else {
             newTodo.id = 1
             newTodo.title = todoText
@@ -42,17 +36,13 @@ const AddTodo = () => {
 
     return (
         <S.AddTodoContainer>
-            <S.OpenModalButton onClick={ () => setModal(true)}> Добавить задачу </S.OpenModalButton>
+            <S.OpenModalButton theme={theme} onClick={ () => setModal(true)}> Добавить задачу </S.OpenModalButton>
             {
                 modal &&
                     <S.Modal open>
-                        <S.ModalContainer>
+                        <S.ModalContainer theme={theme}>
                             <h3> Добавить задачу</h3>
                             <S.TodoValuesContainer>
-                                {/*<S.ValueContainer>*/}
-                                {/*    <S.TodoValue> Введите заголовок</S.TodoValue>*/}
-                                {/*    <S.TodoTextInput />*/}
-                                {/*</S.ValueContainer>*/}
                                 <S.ValueContainer>
                                     <S.TodoValue> Введите текст задачи</S.TodoValue>
                                     <S.TodoTextInput value={todoText} onChange={ (e) => changeText(e)} />
@@ -63,7 +53,6 @@ const AddTodo = () => {
                         </S.ModalContainer>
                     </S.Modal>
             }
-
         </S.AddTodoContainer>
     );
 };

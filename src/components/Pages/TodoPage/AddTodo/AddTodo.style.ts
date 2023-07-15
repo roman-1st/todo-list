@@ -1,15 +1,20 @@
 import styled from "styled-components";
+import {DARK} from "@/src/data/constans/theme";
 
 export const AddTodoContainer = styled.div`
   margin-left: 50px;
 `
 
-export const OpenModalButton = styled.button`
+interface OpenProps {
+    theme: string,
+}
+
+export const OpenModalButton = styled.button<OpenProps>`
   padding: 5px 10px;
   border: 1px solid lightgray;
   background: none;
   text-align: center;
-  
+  color: ${(props) => props.theme === DARK ? "white !important" : "black !important"};
   cursor: pointer;
   
   &:hover {
@@ -30,8 +35,9 @@ export const Modal = styled.dialog`
   justify-content: center;
 `
 
-export const ModalContainer = styled.div`
-  background: rgb(255,255,255);
+export const ModalContainer = styled.div<OpenProps>`
+  background: ${(props) => props.theme === DARK ? "rgb(96, 96, 96)" : "rgb(255,255,255)"};
+  color: ${(props) => props.theme === DARK ? "white !important" : "black !important"};
   padding: 20px;
   position: relative;
 `

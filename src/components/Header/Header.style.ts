@@ -1,12 +1,13 @@
 import styled from "styled-components";
 export const Header = styled.header`
-  height: 50px;
+  min-height: 50px;
   width: 100%;
   margin: 0;
   background: rgb(125,125,125);
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
 `
 
 export const HeaderLinkContainer = styled.div`
