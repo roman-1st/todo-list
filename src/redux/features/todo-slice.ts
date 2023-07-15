@@ -17,6 +17,7 @@ export const todo = createSlice({
     name: "slice",
     initialState,
     reducers: {
+        // получение данных
         fetchTodo: (state, action) => {
             return {
                 value: {
@@ -26,32 +27,36 @@ export const todo = createSlice({
                 }
             }
         },
+        // для лоадера, но не стал делать
         isLoading: (state) => {
             state.value.isLoading = !state.value.isLoading
         },
-        // слайс для изменения состояния выполнения
+        // для изменения состояния выполнения задачи
         setCompleted: (state,action) => {
             const todoItem = state.value.todos.find(item => item.id === action.payload);
             if (todoItem) {
                 todoItem.completed = !todoItem.completed;
             }
         },
+        // для удаления задачи
         removeTodo: (state, action) => {
             return {
                 value: {
+                    ...state.value,
                     todos: [...state.value.todos.filter( el => el.id != action.payload)],
-                    filterTodos: state.value.filterTodos,
                     isLoading: false,
-                    theme: state.value.theme,
                 }
             }
         },
+        //для добавления задачи
         addTodo: (state, action) => {
             state.value.todos.push(action.payload)
         },
+        // для фильтрации задачи
         filterTodo: (state, action) => {
             state.value.filterTodos = action.payload
         },
+        //для изменения темы
         changeTheme: (state, action) => {
             state.value.theme = action.payload
         }
