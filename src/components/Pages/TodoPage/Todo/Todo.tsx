@@ -13,7 +13,6 @@ interface TodoProps {
 
 const Todo = ({id, title, completed, num} : TodoProps) => {
     const dispatch = useDispatch()
-    // const changeCheck = () => setCheck(!check)
     const changeCheck = () => dispatch(setCompleted(id));
     const remove = () => {
         dispatch(removeTodo(id))
@@ -23,13 +22,11 @@ const Todo = ({id, title, completed, num} : TodoProps) => {
         <S.TodoContainer completed={completed}>
             <S.TodoId>
                 {num + 1}
-                {/*<S.TodoUId> Уникальный номер:{id} </S.TodoUId>*/}
             </S.TodoId>
             <S.TodoCheck>
                 <S.InputCheck type="checkbox" checked={completed} onChange={changeCheck}/>
             </S.TodoCheck>
             <S.TodoTextContainer>
-                {/*<S.TodoTitle> Title </S.TodoTitle>*/}
                 <S.TodoText> {title} </S.TodoText>
             </S.TodoTextContainer>
             <S.TodoDeleteContainer>

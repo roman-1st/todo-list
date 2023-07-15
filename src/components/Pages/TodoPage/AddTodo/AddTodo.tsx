@@ -5,21 +5,24 @@ import {useDispatch} from "react-redux";
 import {useTypedSelector} from "@/src/hooks/useTypedSelector";
 import {addTodo} from "@/src/redux/features/todo-slice";
 const AddTodo = () => {
-    const [modal, setModal]  = useState<boolean>(false)
-    const dispatch = useDispatch()
-    const [todoText, setTodoText ] = useState<string>("")
-
+    const [modal, setModal]  = useState<boolean>(false) // открыть закрыть модальное окно
+    const [todoText, setTodoText ] = useState<string>("") // ввод текста
     const {todos, theme} = useTypedSelector( (state) => state.todoReducer.value)
+    const dispatch = useDispatch()
+
+    // функция для получения текста текста
     const changeText = (e: any) => {
         setTodoText(e.target.value)
     }
 
     const addTodoToState = () => {
-    const newTodo = {
-        id: 0,
-        title: '',
-        completed: false,
-    }
+        // формирование новой TODO
+        const newTodo = {
+            id: 0,
+            title: '',
+            completed: false,
+        }
+        // проверка на присвоение айди
         if(todos.length > 0) {
             newTodo.id = todos.at(-1).id + 1
             newTodo.title = todoText
@@ -29,7 +32,8 @@ const AddTodo = () => {
         }
 
         dispatch(addTodo(newTodo))
-        console.log('qew')
+
+        //отчистка поля и закрытие модального окна
         setModal(false)
         setTodoText('')
     }

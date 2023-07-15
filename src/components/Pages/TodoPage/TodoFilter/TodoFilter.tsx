@@ -5,6 +5,8 @@ import {useTypedSelector} from "@/src/hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {filterTodo} from "@/src/redux/features/todo-slice";
 const TodoFilter = () => {
+    // компонента с фильтрацией. Логика фильтрации в родительской компоненте
+
     const {filterTodos} =  useTypedSelector((state) => state.todoReducer.value)
     const dispatch = useDispatch()
 

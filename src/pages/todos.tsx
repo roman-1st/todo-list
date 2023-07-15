@@ -18,7 +18,7 @@ export default Todos;
 
 export async function getServerSideProps() {
     try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/todos/?limit=20')
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos/')
         return {
             props: {
                 todos: response.data.slice(0,7)

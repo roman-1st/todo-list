@@ -12,12 +12,14 @@ import {DARK, LIGHT} from "@/src/data/constans/theme";
 
 const TodoPage = ({data}:any) => {
     const state = useTypedSelector( (state) => state.todoReducer.value)
-    console.log(state.theme)
     const dispatch = useDispatch()
+
+    // запись в reducer
     useEffect( () => {
         dispatch(fetchTodo([...data]))
     }, [])
 
+    // функция отрисовки по фильтрам
     const displayTodos = () => {
         switch (state.filterTodos) {
             case ALL_TODOS:
