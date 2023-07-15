@@ -14,7 +14,7 @@ export const initialState = {
 } as InitialStateType;
 
 export const todo = createSlice({
-    name: "slice",
+    name: "todo",
     initialState,
     reducers: {
         // получение данных
